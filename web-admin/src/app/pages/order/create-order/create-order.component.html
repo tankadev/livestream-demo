@@ -1,0 +1,95 @@
+<div class="row create-order-container">
+  <div class="col-12">
+    <nz-page-header
+      nzTitle="Tạo đơn hàng"
+      nzSubtitle="Nhập tất cả thông tin cần thiết để tạo đơn hàng mới"
+      class="p-0"
+    ></nz-page-header>
+  </div>
+  <div class="col-12">
+    <form nz-form [formGroup]="createOrderForm" (ngSubmit)="submitCreateOrder()">
+      <nz-form-item>
+        <nz-form-label nzSpan="8" nzMd="10" nzLg="6" nzXl="5" nzXXl="3" nzRequired="">Khách hàng</nz-form-label>
+        <nz-form-control
+          nzSpan="12" nzMd="12" nzLg="9" nzXl="10" nzXXl="10"
+          class="inline-input"
+          nzErrorTip="Vui lòng lựa chọn khách hàng"
+        >
+          <nz-select
+            formControlName="customer"
+            nzPlaceHolder="Chọn khách hàng"
+            nzShowSearch
+            [nzLoading]="isFetchDataCustomerList"
+          >
+            <nz-option *ngFor="let customer of customerList"
+              [nzValue]="customer.uuid" nzLabel="{{ customer.name }} {{ customer.phoneNumber ? '(' + customer.phoneNumber + ')' : ''}}"
+            ></nz-option>
+          </nz-select>
+          <button
+            type="button"
+            nz-button nzType="primary"
+            nz-tooltip nzTooltipTitle="Thêm nhanh khách hàng chưa có trong danh sách"
+            (click)="onClickCreateCustomer()"
+          ><i nz-icon nzType="plus"></i></button>
+          <button
+            type="button"
+            nz-button nzType="primary"
+            nz-tooltip nzTooltipTitle="Lấy lại dữ liệu danh sách khách hàng"
+            (click)="onClickFetchDataCustomer()"
+          ><i nz-icon nzType="redo"></i></button>
+          <button
+            type="button"
+            nz-button nzType="primary"
+            nz-tooltip nzTooltipTitle="Mở cửa sổ Quản lý khách hàng"
+            (click)="onClickOpenCustomerList()"
+          ><i nz-icon nzType="block"></i></button>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzSpan="8" nzMd="10" nzLg="6" nzXl="5" nzXXl="3">Ghi chú</nz-form-label>
+        <nz-form-control nzSpan="12" nzMd="12" nzLg="9" nzXl="10" nzXXl="10">
+          <textarea rows="4" nz-input formControlName="note" placeholder="Nhập thông tin ghi chú"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzSpan="8" nzMd="10" nzLg="6" nzXl="5" nzXXl="3">Hình ảnh đính kèm</nz-form-label>
+        <nz-form-control nzSpan="12" nzMd="12" nzLg="9" nzXl="10" nzXXl="10">
+          <nz-upload
+            nzListType="picture-card"
+            nzFileType="image/png,image/jpeg"
+            [nzShowUploadList]="{ showPreviewIcon: false, showRemoveIcon: true }"
+            [nzBeforeUpload]="beforeUpload"
+            [nzShowButton]="fileList.length < 1"
+            [nzIconRender]="tplImagePreview"
+            [(nzFileList)]="fileList"
+          >
+            <div>
+              <i nz-icon nzType="plus"></i>
+              <div class="mt-1">Chọn ảnh</div>
+            </div>
+          </nz-upload>
+          <ng-template #tplImagePreview><img [src]="previewImageSource"/></ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzSpan="8" nzMd="10" nzLg="6" nzXl="5" nzXXl="3">Ngày giao hàng dự kiến</nz-form-label>
+        <nz-form-control nzSpan="12" nzMd="12" nzLg="9" nzXl="10" nzXXl="10">
+          <nz-date-picker formControlName="expectedDeliveryDate" nzFormat="EEEE, dd/MM/yyyy"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzSpan="8" nzMd="10" nzLg="6" nzXl="5" nzXXl="3">Giá dự kiến</nz-form-label>
+        <nz-form-control nzSpan="12" nzMd="12" nzLg="9" nzXl="10" nzXXl="10">
+          <input nz-input formControlName="expectedPrice" placeholder="Nhập giá dự kiến"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzOffset]="8"[nzSpan]="12"
+          [nzMd]="{ span: 12, offset: 10 }" [nzLg]="{ span: 9, offset: 6 }"
+          [nzXl]="{ span: 10, offset: 5 }" [nzXXl]="{ span: 10, offset: 3 }">
+          <button nz-button nzType="primary">Xác nhận</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>

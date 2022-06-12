@@ -1,0 +1,28 @@
+<nz-header>
+  <div class="app-header d-flex justify-content-between align-items-center" [ngClass]="isCollapsed ? 'header-collapsed' : 'header-open-sidebar'">
+    <span class="header-trigger" (click)="onChangedCollapsed()">
+        <i class="trigger"
+          nz-icon
+          [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        ></i>
+    </span>
+    <div class="nav__other-info">
+      <nz-badge [nzCount]="5">
+        <i nz-icon nzType="bell" nzTheme="outline" class="nav__notification-icon"></i>
+      </nz-badge>
+      <div
+        class="nav__user-info"
+        nz-popover
+        nzPopoverTrigger="click"
+        nzPopoverPlacement="bottom"
+        [nzPopoverContent]="contentUserInfo"
+      >
+        <nz-avatar [nzText]="userName && userName[0] ? userName[0] :'D'" nzGap="2"></nz-avatar>
+        <span>{{ userName }}</span>
+      </div>
+      <ng-template #contentUserInfo>
+        <span class="event-logout" (click)="logOut()">Đăng xuất</span>
+      </ng-template>
+    </div>
+  </div>
+</nz-header>

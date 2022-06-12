@@ -1,0 +1,64 @@
+<div class="row pending-table">
+  <div class="col-12">
+    <nz-page-header
+      nzTitle="Đơn đang chờ"
+      nzSubtitle="Hiển thị tất cả đơn đang được chờ làm và đã bắt đầu làm"
+      class="p-0"
+    ></nz-page-header>
+  </div>
+  <div class="col-12">
+    <nz-table #pendingTable nzBordered nzShowSizeChanger nzSize="small"
+      nzPaginationType="small" nzPaginationPosition="top"
+      [nzLoading]="isFetchData"
+      [nzData]="pendingOrdersList">
+      <thead>
+        <tr>
+          <th nzAlign="center" nzWidth="30px">STT</th>
+          <th nzAlign="center" nzWidth="90px">Hình ảnh</th>
+          <th nzAlign="center" nzWidth="20%">Khách hàng</th>
+          <th nzAlign="center">Ghi chú</th>
+          <th nzAlign="center" nzWidth="100px">Trạng thái</th>
+          <th nzAlign="center" nzWidth="150px">Ngày tạo</th>
+          <th nzWidth="180px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of pendingTable.data; let i = index">
+          <td nzAlign="center">{{ i + 1 }}</td>
+          <td nzAlign="center">
+            <img *ngIf="data.imageUrl" class="order-image" nzPopoverOverlayClassName="order-image-detail"
+              [src]="data.imageUrl" nz-popover
+              [nzPopoverContent]="imageDetail">
+            <ng-template #imageDetail>
+              <img class="order-image-detail" [src]="data.imageUrl" width="200" height="200">
+            </ng-template>
+          </td>
+          <td nzAlign="left">{{ data.customer.name }}</td>
+          <td nzAlign="left">{{ data.note }}</td>
+          <td nzAlign="center">
+            <nz-tag [nzColor]="(data.status | displayOrderStatus).color">{{ (data.status | displayOrderStatus).text }}</nz-tag>
+          </td>
+          <td nzAlign="center">{{ data.orderDate | date: 'dd/MM/yyyy HH:mm' }}</td>
+          <td>
+            <div class="d-flex align-items-center justify-content-center gap-2">
+              <button nz-tooltip nzTooltipTitle="Chuyển trạng thái Bắt đầu làm" nz-button nzShape="round" nzSize="small" class="d-flex align-items-center">
+                <i nz-icon nzType="swap" nzTheme="outline"></i>
+              </button>
+              <button nz-tooltip nzTooltipTitle="Chi tiết" nz-button nzShape="round" nzSize="small" class="d-flex align-items-center">
+                <i nz-icon nzType="eye" nzTheme="outline"></i>
+              </button>
+              <button nz-tooltip nzTooltipTitle="Xóa" nz-button nzType="primary" nzShape="round" nzSize="small" class="d-flex align-items-center" nzDanger=true>
+                <i nz-icon nzType="delete" nzTheme="outline"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="isFetchData && pendingOrdersList.length === 0">
+        <tr>
+          <td colspan="3" style="height: 30vh;"></td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

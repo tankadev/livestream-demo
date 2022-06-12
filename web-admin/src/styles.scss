@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+  background-color: #f0f2f5;
+}
+
+.cdk-global-scrollblock {
+  top: 0 !important;
+}
+
+.event-logout {
+  cursor: pointer;
+  transition: .3s;
+
+  &:hover {
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.ant-pagination-item-link  {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,73 @@
+<!-- <div class="container-scroller login-pages">
+  <div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="content-wrapper d-flex align-items-center auth">
+      <div class="row flex-grow">
+        <div class="col-lg-4 mx-auto">
+          <div class="auth-form-light text-left p-5">
+            <div class="brand-logo">
+              <img src="../../assets/images/logo.svg">
+            </div>
+            <h4 class="text-center">Trang quản lý cửa hàng của <a href="https://ohafish.com" target="_blank"><strong>Oha Fish</strong></a></h4>
+            <h6 class="font-weight-light text-center">Đăng nhập để tiếp tục.</h6>
+            <form class="pt-3">
+              <div class="mb-2">
+                <button type="button" class="btn btn-block btn-facebook auth-form-btn" (click)="signInWithFB()" [disabled]="isLoading">
+                  <ng-container *ngIf="!isLoading"><i class="mdi mdi-facebook mr-2"></i>Kết nối với Facebook</ng-container>
+                  <div *ngIf="isLoading" class="d-flex algin-items-center justify-content-center">
+                    <ng-template #indicatorTemplate><i nz-icon nzType="loading"></i></ng-template>
+                    <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
+                  </div>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="auth-container">
+  <div nz-row class="login-container">
+    <div nz-col nzSpan="24" class="login-title">
+      <h1>Đăng nhập</h1>
+      <h3>Truy cập vào hệ thống quản trị</h3>
+    </div>
+    <div nz-col nzSpan="24">
+      <nz-alert
+        *ngIf="mgsError"
+        nzType="error"
+        [nzDescription]="mgsError | translate"
+        nzShowIcon
+        class="mt-3"
+      ></nz-alert>
+    </div>
+    <div nz-col nzSpan="24" class="mt-4">
+      <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitLogin()">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please input your username!">
+            <nz-input-group nzPrefixIcon="user">
+              <input type="text" nz-input formControlName="username" placeholder="Username" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please input your Password!">
+            <nz-input-group nzPrefixIcon="lock">
+              <input type="password" nz-input formControlName="password" placeholder="Password" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <div nz-row class="d-flex align-items-center">
+          <div nz-col [nzSpan]="12">
+            <!-- <label nz-checkbox formControlName="remember">
+              <span>Remember me</span>
+            </label> -->
+          </div>
+          <div nz-col [nzSpan]="12" class="d-flex justify-content-end">
+            <button nz-button [nzType]="'primary'">Đăng nhập</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

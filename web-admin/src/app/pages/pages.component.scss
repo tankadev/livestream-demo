@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+:host ::ng-deep .app-layout {
+  .menu-sidebar {
+    position: fixed;
+    z-index: 10;
+    min-height: 100vh;
+    box-shadow: 2px 0 6px rgba(0,21,41,.35);
+  }
+
+  nz-content {
+    margin: 18px;
+    padding: 15px;
+    background: #fff;
+    min-height: 66vw;
+  }
+
+  nz-content.header-open-sidebar {
+    margin-left: 276px;
+  }
+
+  nz-content.header-collapsed {
+    margin-left: 100px;
+  }
+}

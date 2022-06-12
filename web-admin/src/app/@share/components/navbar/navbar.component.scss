@@ -1,0 +1,65 @@
+.header-trigger {
+  height: 64px;
+  padding: 20px 24px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all .3s,padding 0s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+nz-header {
+  padding: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.app-header {
+  position: fixed;
+  height: 64px;
+  padding: 0 2rem 0 0;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  transition: all 0.2s;
+  z-index: 100;
+}
+
+.app-header.header-open-sidebar {
+  width: calc(100vw - 256px);
+  left: 256px;
+}
+
+.app-header.header-collapsed {
+  width: calc(100vw - 80px);
+  left: 80px;
+}
+
+:host ::ng-deep .nav__other-info {
+  display: flex;
+  align-items: center;
+
+  .nav__notification-icon {
+    cursor: pointer;
+    font-size: 1.4rem;
+  }
+
+  .nav__user-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin: 0 1rem;
+    cursor: pointer;
+    height: 40px;
+
+    nz-avatar {
+      color:#f56a00;
+      background-color:#fde3cf;
+    }
+  }
+}

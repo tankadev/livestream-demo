@@ -1,0 +1,11 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [nzTrigger]="null" [(nzCollapsed)]="isCollapsed" >
+    <sidebar [isCollapsed]="isCollapsed"></sidebar>
+  </nz-sider>
+  <nz-layout>
+    <navbar [(isCollapsed)]="isCollapsed"></navbar>
+    <nz-content [ngClass]="isCollapsed ? 'header-collapsed' : 'header-open-sidebar'">
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
