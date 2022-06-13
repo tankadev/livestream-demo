@@ -7,4 +7,5 @@ class ApiUrl {
   static const String notification = 'notification';
   static const String account = 'user';
   static const String addVerifyInformation = 'user/add-verify-info';
+  static const String updatePushToken = 'user/update-push-token';
 }

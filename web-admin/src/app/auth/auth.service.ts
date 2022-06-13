@@ -22,7 +22,7 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private http: BaseAPIService
+    private http: BaseAPIService,
   ) { }
 
   login(loginDTO: LoginLocalDTO): Observable<any> {

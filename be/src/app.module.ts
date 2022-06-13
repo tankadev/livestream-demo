@@ -12,8 +12,6 @@ import { DotenvService } from './modules/dotenv/dotenv.service';
 import { SessionMiddleware } from './middleware/session.middleware';
 import { HttpFilterError } from './shared/filters/http-error.filter';
 import { TransformInterceptor } from './shared/interceptors/transform.interceptor';
-import { CustomerModule } from './modules/customer/customer.module';
-import { OrderModule } from './modules/order/order.module';
 // import { AuthMiddleware } from './middleware/auth.middleware';
 
 @Module({
@@ -38,8 +36,6 @@ import { OrderModule } from './modules/order/order.module';
     DotenvModule,
     AuthModule,
     UsersModule,
-    CustomerModule,
-    OrderModule,
     NotificationsModule
   ],
   providers: [

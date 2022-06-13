@@ -10,7 +10,8 @@ export const API_URL = {
     PROFILE: 'profile',
     PENDING_VERIFY: 'pending-verify',
     REJECTED: 'rejected',
-    APPROVED: 'approved'
+    APPROVED: 'approved',
+    UPDATE_PUSH_TOKEN: 'update-push-token'
   },
   CUSTOMER: {
     CONTROLLER: 'customer',

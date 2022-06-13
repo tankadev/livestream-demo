@@ -119,6 +119,10 @@ export class UsersService {
                     image: url,
                     verifyStatus: 1
                 });
+                const adminUser = await this.userRepo.findOne({ where: { role: 1 } });
+                if (adminUser) {
+                    await this.notificationsService.pushToAdmin(adminUser.uuid, adminUser.pushToken);
+                }
                 await queryRunner.commitTransaction();
                 return { message: 'UPDATE_SUCCESS' };
             }
@@ -168,6 +172,18 @@ export class UsersService {
             }
         } catch (error) {
             this.logger.error(`approved: ${error}`);
+            throw new HttpException('INTERNAL_SERVER_ERROR', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    async updatePushToken(uuid: string, token: string): Promise<any> {
+        try {
+            await this.userRepo.update(uuid, {
+                pushToken: token
+            });
+            return { message: 'COMPLETED' };
+        } catch (error) {
+            this.logger.error(`updatePushToken: ${error}`);
             throw new HttpException('INTERNAL_SERVER_ERROR', HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

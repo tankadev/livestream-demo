@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { async } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
-// import { NzI18nService } from 'ng-zorro-antd/i18n';
+import { environment } from '../environments/environment';
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+import { UserService } from './@common/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,57 +13,45 @@ import { TranslateService } from '@ngx-translate/core';
     <ngx-spinner></ngx-spinner>
   `
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  message: any = null;
+
   constructor(
     public translate: TranslateService,
-    // private i18n: NzI18nService
+    public userService: UserService
   ) {
-    // i18n.setLocale({
-    //   locale: 'vi',
-    //   DatePicker: {
-    //     lang: {
-    //       today: string,
-    //       now: string,
-    //       backToToday: string,
-    //       ok: string,
-    //       clear: string,
-    //       month: string,
-    //       year: string,
-    //       timeSelect: string,
-    //       dateSelect: string,
-    //       monthSelect: string,
-    //       yearSelect: string,
-    //       decadeSelect: string,
-    //       yearFormat: string,
-    //       monthFormat?: string,
-    //       dateFormat: string,
-    //       dayFormat: string,
-    //       dateTimeFormat: string,
-    //       monthBeforeYear?: boolean,
-    //       previousMonth: string,
-    //       nextMonth: string,
-    //       previousYear: string,
-    //       nextYear: string,
-    //       previousDecade: string,
-    //       nextDecade: string,
-    //       previousCentury: string,
-    //       nextCentury: string,
-    //       yearPlaceholder: 'Chọn tháng',
-    //       quarterPlaceholder: 'Chọn quý',
-    //       monthPlaceholder: 'Chọn tháng',
-    //       weekPlaceholder: 'Chọn tuần',
-    //       rangePlaceholder: ['Thời điểm bắt đầu', 'Thời điểm kết thúc'],
-    //       rangeYearPlaceholder: ['Năm bắt đầu', 'Năm kết thúc'],
-    //       rangeMonthPlaceholder: ['Tháng bắt đầu', 'Tháng kết thúc'],
-    //       rangeWeekPlaceholder: ['Tuần bắt đầu', 'Tuần kết thúc']
-    //     },
-    //     timePickerLocale: {
-    //       placeholder?: string,
-    //       rangePlaceholder?: string[]
-    //     }
-    //   }
-    // });
     translate.setDefaultLang('vi');
     translate.use('vi');
   }
+
+  ngOnInit(): void {
+    this.requestPermission();
+    this.listen();
+  }
+
+  requestPermission(): void {
+    const messaging = getMessaging();
+    getToken(messaging,
+      { vapidKey: environment.firebase.vapidKey }).then(
+        async (currentToken) => {
+          if (currentToken) {
+            console.log(currentToken);
+            localStorage.setItem('pushToken', currentToken);
+          } else {
+            console.log('No registration token available. Request permission to generate one.');
+          }
+        }).catch((err) => {
+          console.log('An error occurred while retrieving token. ', err);
+        });
+  }
+
+  listen(): void {
+    const messaging = getMessaging();
+    onMessage(messaging, (payload) => {
+      console.log('Message received. ', payload);
+      this.message = payload;
+    });
+  }
+
 }

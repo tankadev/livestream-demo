@@ -10,12 +10,8 @@ const routes: Routes = [{
   children: [
     {
       path: '',
-      redirectTo: 'don-hang',
+      redirectTo: 'danh-sach-cho-duyet',
       pathMatch: 'full',
-    },
-    {
-      path: 'don-hang',
-      loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
     },
     {
       path: 'danh-sach-cho-duyet',

@@ -1,4 +1,4 @@
 export const NAVIGATION = {
   AUTH: 'auth',
-  DASHBOARD: '/don-hang/dang-cho'
+  DASHBOARD: '/danh-sach-cho-duyet'
 };

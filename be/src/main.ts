@@ -73,7 +73,7 @@ async function bootstrap() {
   const serviceAccount = require("../hita-live-serviceKey.json");
   // Initialize the firebase admin app
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.cert(serviceAccount)
   });
 
   app.enableCors(options);

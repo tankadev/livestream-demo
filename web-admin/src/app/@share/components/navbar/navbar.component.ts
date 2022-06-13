@@ -32,17 +32,8 @@ export class NavbarComponent implements OnInit {
   }
 
   public logOut(): void {
-    this.spinner.show();
-    this.authService.logout().pipe(
-      finalize(() => {
-        this.spinner.hide();
-      })
-    ).subscribe(
-      () => {
-        // window.location.reload();
-        this.router.navigate([NAVIGATION.AUTH]);
-      }
-    );
+    localStorage.clear();
+    this.router.navigate([NAVIGATION.AUTH]);
   }
 
   public onChangedCollapsed(): void {

@@ -16,6 +16,10 @@ import { AppComponent } from './app.component';
 import { TokenInterceptor } from './@config/interceptors/token.interceptor';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 
+import { initializeApp } from 'firebase/app';
+import { environment } from 'src/environments/environment';
+initializeApp(environment.firebase);
+
 registerLocaleData(vi);
 
 // tslint:disable-next-line: typedef

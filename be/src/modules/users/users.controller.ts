@@ -24,6 +24,13 @@ export class UsersController {
         return this.userService.addVerifyInfo(userUUID, info, imageFile);
     }
 
+    @Get('user-info')
+    getUserDetail(
+        @User('uuid') userUUID: string,
+    ) {
+        return this.userService.findById(userUUID);
+    }
+
     @Get('pending-verify')
     pendingUser() {
         return this.userService.pendingUser();
@@ -43,5 +50,14 @@ export class UsersController {
         @Param('uuid') uuid: string
     ) {
         return this.userService.approved(uuid);
+    }
+
+    @Put('update-push-token')
+    @HttpCode(200)
+    updatePushToken(
+        @User('uuid') userUUID: string,
+        @Body() body: { token: string },
+    ) {
+        return this.userService.updatePushToken(userUUID, body.token);
     }
 }

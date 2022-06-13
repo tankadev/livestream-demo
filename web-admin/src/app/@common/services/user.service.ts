@@ -24,4 +24,8 @@ export class UserService {
   approved(id: string): Observable<any> {
     return this.http.put(`${API_URL.USER.CONTROLLER}/${API_URL.USER.APPROVED}/${id}/`, {});
   }
+
+  updatePushToken(token: string): Observable<any> {
+    return this.http.put(`${API_URL.USER.CONTROLLER}/${API_URL.USER.UPDATE_PUSH_TOKEN}/`, {token});
+  }
 }

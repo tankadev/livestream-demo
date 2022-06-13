@@ -32,9 +32,37 @@ export class NotificationsService {
             if (pushToken) {
                 const payload = {
                     notification: {
-                      title,
-                      body: content,
-                      sound : "default"
+                        title,
+                        body: content,
+                        sound: "default"
+                    }
+                };
+                await admin.messaging().sendToDevice([pushToken], payload);
+            }
+        } catch (error) {
+            this.logger.error(`createNotification: ${error}`);
+            throw new HttpException('INTERNAL_SERVER_ERROR', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    async pushToAdmin(adminUuid: string, pushToken: string): Promise<any> {
+        try {
+            const newNoti = this.notificationsRepo.create(
+                {
+                    title: 'Yêu cầu chờ duyệt mới',
+                    content: 'Có một yêu cần xác thực cần duyệt',
+                    userUuid: adminUuid
+                }
+            );
+            newNoti.uuid = uuid.v4().replace(/-/g, '');
+
+            await this.notificationsRepo.save(newNoti);
+            if (pushToken) {
+                const payload = {
+                    notification: {
+                        title: 'Yêu cầu chờ duyệt mới',
+                        content: 'Có một yêu cần xác thực cần duyệt',
+                        sound: "default"
                     }
                 };
                 await admin.messaging().sendToDevice([pushToken], payload);
