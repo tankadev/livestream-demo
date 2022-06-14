@@ -13,8 +13,9 @@ Các chức năng chưa làm
 
 #### Mobile
 Mobile cũng được build thành APK đối với Android và upload lên TestFight đối với iOS
-- Đối với Android: link file APK (do không up lên store nên không build dưới dạng *.abb nên khi test vui lòng tải xuống file APK phù hợp với kiến trúc của máy test)
+- Đối với Android: link file APK https://drive.google.com/drive/folders/1rfRgI2bvA984q1aRbvdSTa2R2IUT2uZD?usp=sharing (do không up lên store nên không build dưới dạng *.abb nên khi test vui lòng tải xuống file APK phù hợp với kiến trúc của máy test)
 - Đối với iOS: Link public testing TestFight (nếu chưa có TestFight thì vào AppStore download TestFight và bấm vào link mời)
+- Một tài khoản đã được xác thực: van@test.com/12345678
 
 #### Web admin
 Vào thư mục web-admin và chạy lệnh **ng serve** để khởi chạy dự án Angular, sau đó mở Web truy cập vào đường dẫn **http://localhost:4200**
@@ -28,8 +29,8 @@ URL API đã được cấu hình cho source mobile và web
 ###### Chú ý: do không có nhiều thời gian nên việc xử lý realtime phụ thuộc hoàn toàn vào Firebase, nên bắt buộc phải cho phép nhận thông báo từ WEB và Mobile, nếu không nhận được thông báo vui lòng reload lại ứng dụng Web và tắt app mở lại để tải dữ liệu mới.
 
 # Thông tin clip demo quay sẵn
-- Mô tả toàn bộ flow app trên Android: 
-- Mô tả chạy ứng dụng iOS từ TestFight :
+- Mô tả toàn bộ flow app trên Android: https://drive.google.com/drive/folders/1rogbz1ElF_9WVToLd2_xA5QuXFEmcTPV?usp=sharing
+- Mô tả chạy ứng dụng iOS từ TestFight: https://drive.google.com/drive/folders/1iteY41t3fKhgUhwecymzzyjACmmFy6Su?usp=sharing
 
 ## Giới thiệu chi tiết
 ## Mobile
@@ -72,27 +73,38 @@ Cấu trúc source
     |---main.dart
 ```
 
-##### Hình ảnh giao diện
+### Hình ảnh giao diện
 Màn hình login
+![Màn hình login](./images/mobile_login.jpg "Màn hình login")
 
 Màn hình đăng ký
+![Màn hình đăng ký](./images/mobile_login.jpg "Màn hình đăng ký")
 
 Màn hình chính có 2 bottom tab là Live và Tài khoản, tài khoản phải được xác thực thì khi bấm vào nút 'Live ngay' mới có thể di chuyển đến màn hình Livestream, còn không sẽ di chuyển đến màn hinh 'Nhập thông tin xác thực', khi đang chờ duyệt sẽ hiện thị 'Chờ xác nhận'
 
+![TabLive](./images/mobile_live.jpg "TabLive")
+
+![TabAccount](./images/mobile_account.jpg "TabAccount")
+
+![Pending](./images/mobile_pending.jpg "Pending")
+
 Màn hình Livestream
+![Livestream](./images/mobile_livestream.jpg "Livestream")
 
 Màn hình nhập thông tin xác thực
-
+![Thông tin xác thực](./images/mobile_verify.jpg "thông tin xác thực")
 ## Web-admin
 
 Sử dụng Angular xây dựng ứng dụng web-admin
 Cấu hình Firebase Cloud Message để nhận thông báo trên web
 Sử dụng thư viện Ant Design of Angular chứa các component có sẵn để tiện xây dựng giao diện cho ứng dụng.
 
-##### Hình ảnh giao diện
+### Hình ảnh giao diện
 Màn hình đăng nhập với thông tin đăng nhập được điền sẵn
+![Màn hình đăng nhập](./images/web_login.png "Màn hình đăng nhập")
 
 Màn hình danh sách chờ duyệt các thông tin xác thực của người dùng gửi lên, khi rê chuột vào hình ảnh có thể xem hình ành ở dạng to hơn
+![Màn hình đăng nhập](./images/web_dashboard.png "Màn hình đăng nhập")
 ## Backend
 
 Sử dụng Nestjs và MySQL xây dựng backend và cơ sở dữ liệu cho hệ thống
@@ -105,6 +117,8 @@ Thông tin bảng User và một số field quan trọng:
 - verify_status: tượng trưng cho trạng thái xác thực của tài khoản và có 4 trạng thái: 0(ban đầu), 1(đang gửi yêu cầu), 2(duyệt), 3(từ chối)
 - push_token: lưu lại thông tin Firebase token tương ứng với từng thiết bị phục vụ cho việc gửi thông báo
 - image: lưu trữ đường dẫn hình được lưu ở S3
+
+![Màn hình đăng nhập](./images/user_table.png "Màn hình đăng nhập")
 
 Danh sách API:
 | Tên API | Phương thức |Mô tả|Nơi sử dụng|
