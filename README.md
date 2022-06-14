@@ -9,12 +9,17 @@ Các chức năng đã làm
 Các chức năng chưa làm
 - Chức năng livestream
 
+Thông tin thư mục:
+- mobile: ~/hitalive
+- web: ~/web-admin
+- backend: ~/be
+
 # Hướng dẫn sử dụng chạy demo
 
 #### Mobile
 Mobile cũng được build thành APK đối với Android và upload lên TestFight đối với iOS
 - Đối với Android: link file APK https://drive.google.com/drive/folders/1rfRgI2bvA984q1aRbvdSTa2R2IUT2uZD?usp=sharing (do không up lên store nên không build dưới dạng *.abb nên khi test vui lòng tải xuống file APK phù hợp với kiến trúc của máy test)
-- Đối với iOS: Link public testing TestFight (nếu chưa có TestFight thì vào AppStore download TestFight và bấm vào link mời)
+- Đối với iOS: Link public testing TestFight https://testflight.apple.com/join/wAIjvyuz (nếu chưa có TestFight thì vào AppStore download TestFight và bấm vào link mời)
 - Một tài khoản đã được xác thực: van@test.com/12345678
 
 #### Web admin
@@ -22,11 +27,12 @@ Vào thư mục web-admin và chạy lệnh **ng serve** để khởi chạy d�
 Thông tin đăng nhập của admin đã được tự động điền sẵn (admin@test.com/12345678) sau đó bấm đăng nhập
 
 #### Backend
-Backend đã được deploy lên heroku (link API: https://hita-live.herokuapp.com)
-Database và S3 đã được cấu hình online
-URL API đã được cấu hình cho source mobile và web
+- Backend đã được deploy lên heroku (link API: https://hita-live.herokuapp.com)
+- Database và S3 đã được cấu hình online
+- URL API Heroku đã được cấu hình cho source mobile và web
 
-###### Chú ý: do không có nhiều thời gian nên việc xử lý realtime phụ thuộc hoàn toàn vào Firebase, nên bắt buộc phải cho phép nhận thông báo từ WEB và Mobile, nếu không nhận được thông báo vui lòng reload lại ứng dụng Web và tắt app mở lại để tải dữ liệu mới.
+###### Chú ý: Do không có nhiều thời gian nên việc xử lý realtime phụ thuộc hoàn toàn vào Firebase, nên bắt buộc phải cho phép nhận thông báo từ WEB và Mobile, nếu không nhận được thông báo vui lòng reload lại ứng dụng Web và tắt app mở lại để tải dữ liệu mới.
+###### Chú ý: Đối với việc sử dụng Firebase Notification, thì khi đang active app (ví dụ đang mở tab web hoặc app chạy ở foreground sẽ không thấy notification hiện ra, notification sẽ nhận ngầm ở trong), khi đang active tab web khác, hoặc app chạy background sẽ hiện notification thông báo ra, nếu muốn xử lý case này sẽ tốn thêm thời gian, nên hiện tại chỉ apply như vậy trong nội dung demo.
 
 # Thông tin clip demo quay sẵn
 - Mô tả toàn bộ flow app trên Android: https://drive.google.com/drive/folders/1rogbz1ElF_9WVToLd2_xA5QuXFEmcTPV?usp=sharing
@@ -78,7 +84,7 @@ Màn hình login
 ![Màn hình login](./images/mobile_login.jpg "Màn hình login")
 
 Màn hình đăng ký
-![Màn hình đăng ký](./images/mobile_login.jpg "Màn hình đăng ký")
+![Màn hình đăng ký](./images/mobile_register.jpg "Màn hình đăng ký")
 
 Màn hình chính có 2 bottom tab là Live và Tài khoản, tài khoản phải được xác thực thì khi bấm vào nút 'Live ngay' mới có thể di chuyển đến màn hình Livestream, còn không sẽ di chuyển đến màn hinh 'Nhập thông tin xác thực', khi đang chờ duyệt sẽ hiện thị 'Chờ xác nhận'
 
@@ -95,9 +101,9 @@ Màn hình nhập thông tin xác thực
 ![Thông tin xác thực](./images/mobile_verify.jpg "thông tin xác thực")
 ## Web-admin
 
-Sử dụng Angular xây dựng ứng dụng web-admin
-Cấu hình Firebase Cloud Message để nhận thông báo trên web
-Sử dụng thư viện Ant Design of Angular chứa các component có sẵn để tiện xây dựng giao diện cho ứng dụng.
+- Sử dụng Angular xây dựng ứng dụng web-admin
+- Cấu hình Firebase Cloud Message để nhận thông báo trên web
+- Sử dụng thư viện Ant Design of Angular chứa các component có sẵn để tiện xây dựng giao diện cho ứng dụng.
 
 ### Hình ảnh giao diện
 Màn hình đăng nhập với thông tin đăng nhập được điền sẵn
@@ -107,10 +113,10 @@ Màn hình danh sách chờ duyệt các thông tin xác thực của người d
 ![Màn hình đăng nhập](./images/web_dashboard.png "Màn hình đăng nhập")
 ## Backend
 
-Sử dụng Nestjs và MySQL xây dựng backend và cơ sở dữ liệu cho hệ thống
-Cấu hình Firebase Admin để xử lý gửi thông báo từ Backend
-Sử dụng AWS EC2 có cấu hình MySQLServer phục vụ việc chứa Database MySQL
-Sử dụng AWS S3 để upload hình ảnh xác thực từ ứng dụng mobile
+- Sử dụng Nestjs và MySQL xây dựng backend và cơ sở dữ liệu cho hệ thống
+- Cấu hình Firebase Admin để xử lý gửi thông báo từ Backend
+- Sử dụng AWS EC2 có cấu hình MySQLServer phục vụ việc chứa Database MySQL
+- Sử dụng AWS S3 để upload hình ảnh xác thực từ ứng dụng mobile
 
 Thông tin bảng User và một số field quan trọng:
 - role: 0 là user và 1 là admin
@@ -118,7 +124,7 @@ Thông tin bảng User và một số field quan trọng:
 - push_token: lưu lại thông tin Firebase token tương ứng với từng thiết bị phục vụ cho việc gửi thông báo
 - image: lưu trữ đường dẫn hình được lưu ở S3
 
-![Màn hình đăng nhập](./images/user_table.png "Màn hình đăng nhập")
+![usertable](./images/user_table.png "usertable")
 
 Danh sách API:
 | Tên API | Phương thức |Mô tả|Nơi sử dụng|
