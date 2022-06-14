@@ -30,7 +30,8 @@ class _FirebaseAppState extends State<FirebaseApp> {
     initDataForApp();
   }
 
-  void initDataForApp() {}
+  void initDataForApp() async {
+  }
 
   Future<void> initFirebase() async {
     _messaging = FirebaseMessaging.instance;
@@ -47,13 +48,17 @@ class _FirebaseAppState extends State<FirebaseApp> {
       if (settings.authorizationStatus == AuthorizationStatus.authorized) {
         _messaging.getToken().then((value) {
           print('tokenFcm: ${value}');
+          if (value != null && value.isNotEmpty) {
+            context.read<FirebaseBloc>().add(UpdateTokenFirebase(token: value));
+          }
         });
-        FirebaseMessaging.onMessage.listen((RemoteMessage event) {
+        FirebaseMessaging.onMessage.listen((RemoteMessage event) async {
           print("message recieved");
           // Parse the message received
           print(event.notification!.title);
           print(event.notification!.body);
           print(event.data.values);
+          context.read<AccountBloc>().add(const FetchUser());
         });
         FirebaseMessaging.onMessageOpenedApp.listen((message) {
           print('Message clicked!');
@@ -69,6 +74,11 @@ class _FirebaseAppState extends State<FirebaseApp> {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
+        if (state.status == EAuthStatus.authenticated) {
+          context.read<AccountBloc>().add(const FetchUser());
+          context.read<FirebaseBloc>().add(const SaveTokenFirebase());
+        }
+
         switch (state.status) {
           case EAuthStatus.authenticated:
             _navigator.pushNamedAndRemoveUntil<void>(

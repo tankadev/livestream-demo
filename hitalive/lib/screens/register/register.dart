@@ -105,6 +105,7 @@ class RegisterScreen extends StatelessWidget {
                         builder: (contextRegister) {
                           return ElevatedButton(
                             onPressed: () {
+                              FocusManager.instance.primaryFocus?.unfocus();
                               contextRegister.read<RegisterBloc>().add(
                                     const RegisterSubmitted(),
                                   );

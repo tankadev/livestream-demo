@@ -44,8 +44,18 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>FirebaseAppDelegateProxyEnabled</key>
-    <false/>
+	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
-    <false/>
+	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app need to access Photo Library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app need to access Camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app need to access Microphone</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_dartobservatory._tcp</string>
+	</array>
 </dict>
 </plist>

@@ -28,8 +28,6 @@ class HttpClient {
   Future<dynamic> post(String url,
       {Map<String, dynamic>? body, Map<String, dynamic>? query}) async {
     try {
-      print('$baseUrl/$url');
-      print(body);
       final Response response = await dio.post('$baseUrl/$url',
           data: body ?? {}, queryParameters: query);
       return response.data;
@@ -42,6 +40,16 @@ class HttpClient {
     try {
       final Response response =
           await dio.put('$baseUrl/$url', data: body ?? {});
+      return response.data;
+    } on DioError catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<dynamic> putFormData(String url, FormData data) async {
+    try {
+      final Response response =
+      await dio.put('$baseUrl/$url', data: data);
       return response.data;
     } on DioError catch (e) {
       rethrow;
@@ -63,9 +71,9 @@ class HttpClient {
       QueuedInterceptorsWrapper(onRequest:
           (RequestOptions options, RequestInterceptorHandler handler) async {
         // ----- Kiểm tra xử lí cho các API không cần TOKEN -----
-        final String path = options.path.replaceAll(baseUrl, '');
+        final String path = options.path.replaceAll(baseUrl, '').replaceAll('/', '');
         bool isCheckUrl = Constants.excludeApiURL
-            .any((String v) => v.toLowerCase().contains(path));
+            .any((String v) => v.toLowerCase().replaceAll('/', '').contains(path));
 
         if (isCheckUrl) {
           return handler.next(options);

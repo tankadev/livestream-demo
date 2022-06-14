@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:hitalive/screens/privates/account/account.dart';
 import 'package:hitalive/screens/privates/live/live.dart';
-import 'package:hitalive/screens/privates/notifications/notifications.dart';
 import 'package:hitalive/common/common.dart';
 import 'package:hitalive/blocs/blocs.dart';
 
@@ -15,7 +14,6 @@ class PrivatesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> tabScreens = [
       const LiveScreen(),
-      const NotificationsScreen(),
       const AccountScreen(),
     ];
 
@@ -29,12 +27,6 @@ class PrivatesScreen extends StatelessWidget {
           return BottomNavBar(
             items: <BottomNavBarItem>[
               BottomNavBarItem(icon: Icons.fiber_smart_record, label: 'Live'),
-              BottomNavBarItem(
-                icon: Icons.notifications,
-                label: 'Thông báo',
-                showBadge: true,
-                badgeNumber: state.notificationBadge,
-              ),
               BottomNavBarItem(
                   icon: CupertinoIcons.person_fill, label: 'Tài khoản')
             ],

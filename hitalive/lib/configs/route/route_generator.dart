@@ -31,6 +31,16 @@ class RouteGenerator {
           reverseTransitionDuration: Duration.zero,
         );
 
+      case Routes.verifyInfo:
+        return CupertinoPageRoute(
+          builder: (BuildContext context) => const VerifyInfoScreen(),
+        );
+
+      case Routes.streaming:
+        return CupertinoPageRoute(
+          builder: (BuildContext context) => const StreamingScreen(),
+        );
+
       default:
         return _errorRoute();
     }

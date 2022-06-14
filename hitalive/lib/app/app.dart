@@ -43,9 +43,14 @@ class _ChtAppState extends State<ChtApp> {
         RepositoryProvider<AuthRepository>(
           create: (context) => AuthRepository(
             authProvider:
-            AuthProvider(RepositoryProvider.of<HttpClient>(context)),
+                AuthProvider(RepositoryProvider.of<HttpClient>(context)),
             storage: RepositoryProvider.of<StorageRepository>(context),
           ),
+        ),
+        RepositoryProvider<UserRepository>(
+          create: (context) => UserRepository(
+              userProvider:
+                  UserProvider(RepositoryProvider.of<HttpClient>(context))),
         ),
       ],
       child: MultiBlocProvider(
@@ -56,6 +61,18 @@ class _ChtAppState extends State<ChtApp> {
           ),
           BlocProvider<PrivatesNavBloc>(
             create: (BuildContext context) => PrivatesNavBloc(),
+          ),
+          BlocProvider<AccountBloc>(
+            create: (BuildContext context) => AccountBloc(
+                userRepository: RepositoryProvider.of<UserRepository>(context)),
+          ),
+          BlocProvider<FirebaseBloc>(
+            create: (BuildContext context) => FirebaseBloc(
+                userRepository: RepositoryProvider.of<UserRepository>(context)),
+          ),
+          BlocProvider<VerifyInfoBloc>(
+            create: (BuildContext context) => VerifyInfoBloc(
+                userRepository: RepositoryProvider.of<UserRepository>(context)),
           ),
         ],
         child: Sizer(builder: (context, orientation, deviceType) {

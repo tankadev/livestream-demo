@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  BE_URL: 'http://localhost:3300/garment_v1',
+  BE_URL: 'https://hita-live.herokuapp.com',
   firebase: {
     apiKey: "AIzaSyB6uKjGB3KgkDMs4345BpKLc2FjGliNb90",
     authDomain: "hita-live.firebaseapp.com",

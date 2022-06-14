@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BE_URL: 'http://localhost:3300/hita-live',
+  BE_URL: 'https://hita-live.herokuapp.com',
   firebase: {
     apiKey: "AIzaSyB6uKjGB3KgkDMs4345BpKLc2FjGliNb90",
     authDomain: "hita-live.firebaseapp.com",

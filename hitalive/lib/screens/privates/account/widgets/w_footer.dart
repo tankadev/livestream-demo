@@ -30,7 +30,7 @@ class WAccountFooter extends StatelessWidget {
                     );
               },
               child: Text(
-                'LOGOUT',
+                'ĐĂNG XUẤT',
                 style: AppTextStyle.normalTextWhite,
               ),
             ),

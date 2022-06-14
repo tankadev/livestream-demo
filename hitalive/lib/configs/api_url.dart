@@ -3,9 +3,7 @@ class ApiUrl {
   static const String login = 'auth/login';
 
   // Privates
-  static const String live = 'live';
-  static const String notification = 'notification';
-  static const String account = 'user';
-  static const String addVerifyInformation = 'user/add-verify-info';
-  static const String updatePushToken = 'user/update-push-token';
+  static const String userInfo = 'user/user-info/';
+  static const String addVerifyInformation = 'user/add-verify-info/';
+  static const String updatePushToken = 'user/update-push-token/';
 }

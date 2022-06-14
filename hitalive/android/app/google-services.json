@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "270485872707",
+    "project_id": "hita-live",
+    "storage_bucket": "hita-live.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270485872707:android:1678721e1831eb62ccb4f6",
+        "android_client_info": {
+          "package_name": "com.vannguyen.hitalive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "270485872707-gi1cf163iics6usqq79o314tevu8525u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMRrqmXgrKp0fEhNoRvXjMTWQ4LW7iOjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "270485872707-gi1cf163iics6usqq79o314tevu8525u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "270485872707-0fu1tag012dkba64kbe6vju22l9p32ju.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vannguyen.hitalive"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

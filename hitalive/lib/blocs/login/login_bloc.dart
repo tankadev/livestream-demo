@@ -28,7 +28,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         await authRepository.logIn(LoginDTO.fromJson(state.loginForm.value));
         emit(state.copyWith(status: EBlocStateStatus.success));
       } on DioError catch (e) {
-        print(e);
         String errorCode = '';
         if (e.response != null &&
             e.response?.data != null &&
